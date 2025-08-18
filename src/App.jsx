@@ -5,10 +5,13 @@ import { Routes, Route } from 'react-router-dom'
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import Add from "./pages/Add/Add";
+ import { ToastContainer } from 'react-toastify';
+ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <div>
+      <ToastContainer />
       <Navbar />
       <hr style={{ border: "1px solid lightgray", margin: "10px 0" }} />
       <div className="app-content">
