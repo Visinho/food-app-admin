@@ -10,12 +10,22 @@ const List = () => {
   const url = "http://localhost:4000"
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`)
-    console.log(response.data)
     if (response.data.success) {
       setList(response.data.data)
     }else {
       toast.error("Error");
       
+    }
+  }
+
+
+  const removeFood = async(foodId) => {
+    const response = await axios.delete(`${url}/api/food/delete/${foodId}`)
+    await fetchList();
+    if (response.data.success) {
+      toast.success(response.data.message)
+    }else {
+      toast.error("Error deleting food item!")
     }
   }
 
@@ -41,7 +51,7 @@ const List = () => {
                <p>{item.name}</p>
                <p>{item.category}</p>
                <p>${item.price}</p>
-               <p className='cursor'>X</p>
+               <p onClick={()=>removeFood(item._id)} className='cursor'>X</p>
             </div>
           )
         })}
