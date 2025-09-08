@@ -7,7 +7,7 @@
 }
 
 .add form {
-    gap: 20px;
+    gap: 40px;
 }
 
 .add-img-upload img {
@@ -44,4 +44,8 @@
 
 .upload {
     cursor: pointer;
+}
+
+.space {
+    margin-top: 40px;
 }
