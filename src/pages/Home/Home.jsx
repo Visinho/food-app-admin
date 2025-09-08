@@ -66,14 +66,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="quick-links">
+      {/* <div className="quick-links">
         <h2>Quick Actions</h2>
         <div className="links">
           <a href="/add" className="link-btn">➕ Add New Food</a>
           <a href="/list" className="link-btn">📃 View Food List</a>
           <a href="/orders" className="link-btn">📦 Manage Orders</a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
