@@ -12,7 +12,9 @@ const Add = ({url}) => {
     name: "",
     description: "",
     price: "",
-    category: ""
+    category: "",
+    availableFrom: "",
+    availableTo: ""
   })
 
   const [categoryImage, setCategoryImage] = useState(false);
@@ -57,13 +59,17 @@ const Add = ({url}) => {
     formData.append("price", Number(data.price))
     formData.append("category", data.category)
     formData.append("image", image)
+    formData.append("availableFrom", data.availableFrom);
+    formData.append("availableTo", data.availableTo);
     const response = await axios.post(`${url}/api/food/add`, formData);
     if(response.data.success) {
         setData({
             name: "",
             description: "",
             price: "",
-            category: ""
+            category: "",
+            availableFrom: "",
+            availableTo: ""
         })
         setImage(false)
         toast.success(response.data.message)
@@ -83,7 +89,7 @@ const Add = ({url}) => {
         setCategoryData({ name: "" });
         setCategoryImage(false);
         toast.success(response.data.message);
-        fetchCategories(); // Refresh category list for food dropdown
+        fetchCategories(); 
     } else toast.error(response.data.message);
   }
 
@@ -137,8 +143,15 @@ const Add = ({url}) => {
 
           <div className="add-price flex-col">
             <p>Product Price</p>
-            <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='$20'/>
+            <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='₦'/>
           </div>
+        </div>
+         <div className='add-availability flex-col'>
+          <p>Available From</p>
+          <input type="time" name="availableFrom" value={data.availableFrom} onChange={onChangeHandler} required />
+
+          <p>Available To</p>
+          <input type="time" name="availableTo" value={data.availableTo} onChange={onChangeHandler} required />
         </div>
         <button type='submit' className='add-btn'>ADD FOOD</button>
       </form>
